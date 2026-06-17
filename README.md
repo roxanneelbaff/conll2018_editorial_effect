@@ -24,7 +24,14 @@ Reproduction code for the CoNLL 2018 paper:
 
 This repository contains the annotation data and analysis code used in the paper. The study investigates how readers with different political orientations (liberal vs. conservative) perceive the argumentation quality of New York Times editorials — specifically whether an editorial **challenges**, **has no effect on**, or **reinforces** their pre-existing stance.
 
+
+> **Annotation guidelines:** The annotation instructions used in the study are included under `data/annotation_guidelines/`.
+
+> **Original dataset:** The base editorial-quality dataset is available here: [https://webis.de/data/webis-editorial-quality-18.html](https://webis.de/data/webis-editorial-quality-18.html).
+
 > **Note on the NYT corpus:** The article text files (`.txt`) are derived from the New York Times Annotated Corpus, which requires a license. They are excluded from this repository. All annotation data needed to reproduce the paper's results is included.
+>
+
 
 ---
 
