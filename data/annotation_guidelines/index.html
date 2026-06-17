@@ -1,0 +1,85 @@
+{{ template "header.html" .}}
+
+<form id="login-form" action="/annotation-tool/login" method="post">
+    <div class="login-form-main-message"></div>
+    <div class="message">
+            <span class="error" id="server-message" >
+        {{.message}}
+        </span>
+        <span class="error noshow" id="error" >
+            <strong>Please fill in all fields</strong> 
+          </span>
+          <span class="error noshow" id="error-id" >
+            <strong>You entered a wrong ID</strong>   Please contact us on UpWork in case you do not know your ID!
+          </span>
+
+        <div>
+    <div class="main-login-form">
+        <div class="login-group">
+            <div class="form-group">
+                <label for="username">Full name as shown on up-work</label><br />
+                <label><small>Your name will not be shared</small></label><br />
+                <input type="text" id="username" name="username" >
+            </div>
+            <div class="form-group">
+                <label for="user-id">User ID</label><br />
+                <input type="text" id="user-id" name="user-id" placeholder="ID as provided on UpWork">
+            </div>
+            <div class="form-group">
+                    <label for="political-typology">Political Typology - Please select the political typology that you already reported</label><br />
+                    <select name="political-typology" id="political-typology">
+                            <option value disabled selected > -- select an option -- </option>
+                            <option value="Solid Liberals">Solid Liberal</option>
+                            <option value="Opportunity Democrats">Oppurtunity Democrats</option>
+                            <option value="Disaffected Democrats">Disaffected Democrats</option>
+                            <option value="Devout and Diverse">Devout and Diverse</option>
+                            <option value="New Era Enterprisers">New Era Enterprisers</option>
+                            <option value="Market Skeptic Republicans">Market Skeptic Republicans</option>
+                            <option value="Country First Conservatives">Country First Conservatives</option>
+                            <option value="Core Conservatives">Core Conservatives</option>
+                            <option value="Bystanders">Bystanders</option>
+                          </select> 
+                </div>
+          
+        </div>
+        <a href="/annotation-tool/intro">
+                <input type="button" value="Back" />
+             </a>
+        <button type="submit" value="Next">Next</button>
+    </div>
+</form>
+
+{{ template "footer.html" .}}
+<script  type="text/javascript">
+    
+$(document).ready(function() {
+    const regex = /^(C|L|T)[0-2][0-9]$/gm;
+
+    $('#login-form').submit(function () {
+        $('#error').fadeOut(100);
+        $('#error-id').fadeOut(100);
+
+        var name = $.trim($('#username').val());
+        var userid = $.trim($('#user-id').val());
+        var pt = $('#political-typology').val();
+
+        var match =userid.match(regex);
+        
+        // ^(C|L)[0-2][0-9]$
+        if (name  === '' || userid === '' || pt== null ) {
+            informMessage('#error')
+            return false;
+        } 
+        if (match == null) {
+            informMessage('#error-id')
+            return false;
+        }
+    });
+})
+
+function informMessage(id) {
+        $(id).fadeIn(500, function() {
+           
+        });
+    }
+</script>

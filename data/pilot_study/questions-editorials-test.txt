@@ -1,0 +1,38 @@
+Test-phase
+---------------
+1.  Poilitical topology test: http://www.people-press.org/quiz/political-typology/?groupID=tcKKE
+2. editorials ids
+
+
+
+3. answer questions
+
+
+a) Did the editorial make you think?
+[] Yes
+[] Somehow
+[] No 
+
+ b) Before reading the editorial, did you have the same stance as the author?
+[] Yes -  before reading the editorial I had the same stance as the author
+[] Somehow - I agreed with some point and disagreed with others
+[] No 
+[] I did not get what is the stance of the author!
+
+
+<If question (a) is not yes>
+ c) After reading the editorial, did it change your stance ?
+[] Yes
+[] Somehow
+[] No - I had the same stance as the editorial and I still have the same stance
+ 	[] No - I had an opposite stance to the editorial and I still have the opposite stance
+
+
+d) Did the editorial enforce your  pre-editorial stance ? 
+Please note that this question is applicable both sides:
+<If question (a) is  yes> In case you had the same stance as the author prior reading the editorial: Did the editorial improve your arguments toward your stance and therefore enforeced your stance?
+<If question (a) is not  yes> In case you had a different stance prior reading the news editorial: Did the editorial enforce your opposite stance even though (for example: you are with same sex marriage, the editorial is against same sex marriage. After reading the editorial, You are more convinced with your own stance as opposed to the editorial's stance)
+[] Yes
+[] Somehow
+[] No 
+

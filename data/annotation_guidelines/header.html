@@ -1,0 +1,42 @@
+<!--header.html-->
+
+<!doctype html>
+<html>
+
+<head>
+    <!--Use the `title` variable to set the title of the page-->
+
+    <title>Annotation Tool</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+
+    <!-- Use bootstrap to make the application look nice -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style type="text/css" media="screen">
+
+
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mini-zalos.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="header">
+   
+        <label class="header-title">News Editorial Annotations</label>
+        {{if .uid}}
+        <div class="nav-right">
+            <i class="glyphicon glyphicon-user"></i> {{.uid}}, {{.pt}}
+           
+            <a href="/annotation-tool/logout">Logout</a>
+           
+          </div>
+          {{end}}
+        <!--end navbar-right -->
+    </div>
+
+    <div class="container">
+        <h1>{{.title}}</h1>

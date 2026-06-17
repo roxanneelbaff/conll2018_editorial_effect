@@ -1,0 +1,169 @@
+
+{{ template "header.html" .}}
+<label class="at-progress">{{.progress}}</label>
+<form id="annotate-form"  action="/annotation-tool/annotate" method="post">
+<input type="hidden" name="articleIndex" id="articleIndex" value="{{.articleIndex}}" /> 
+<h3>News Editorial</h3>
+<div>
+    {{.text}}
+</div>
+
+
+<br />
+<hr>
+<h3>Questions</h3>
+<div class="message">
+    <span class="error noshow" id="error" >
+        <strong>Please fill in all the questions below!</strong> 
+      </span>
+     
+
+    <div>
+            <br />
+<div class="form-group"> <!-- Radio group !-->
+    <label class="control-label">How did the news editorial affect you?</label>
+    <ul>
+            <li>An editorial is <b>challenging</b>, if it makes you rethink your prior stance on the discussed topic, even though you may not change your stance in the end.
+            </li>
+            <li>An editorial is <b>reinforcing</b>, if it helps you in building or further corroborating your prior stance on the discussed topic.
+            </li>
+        </ul>
+    <div class="radio">
+      <label>
+        <input type="radio" name="affect" value="1">
+        It <strong>strongly challenged</strong> me
+        <br /> <label style="color:#808080;font-size:16px;">choose, if the editorial really <strong>made you rethink</strong>  whether and why you think that your stance is the right one</label>
+      </label>
+    </div>
+    <div class="radio">
+        <label>
+          <input type="radio"  name="affect" value="2">
+          It <strong>somewhat challenged</strong> me
+          <br /> <label style="color:#808080;font-size:16px;">choose, if the editorial conveys at least some information opposing your stance that is new and noteworthy for you</label>
+
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio"  name="affect" value="3">
+          It neither challenged me nor reinforced my stance
+          <br /> <label style="color:#808080;font-size:16px;">choose, if you found no new and noteworthy information opposing or supporting your stance</label>
+
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio"  name="affect" value="4">
+          It <strong>somewhat reinforced</strong> my stance
+          <br /> <label style="color:#808080;font-size:16px;">choose, if the editorial conveys at least some information supporting your stance that is new and noteworthy for you</label>
+
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio"  name="affect" value="5">
+          It <strong>strongly reinforced</strong> my stance
+          <br /> <label style="color:#808080;font-size:16px;">choose, if you think that the editorial really <strong>enabled you to better argue</strong> about your stance </label>
+
+        </label>
+      </div>
+</div>	
+
+<div id="change-div" class="form-group noshow"> <!-- Radio group !-->
+    <label class="control-label">Did the editorial actually change your stance on the discussed topic (from pro to con, or vice versa)?</label>
+    <div class="radio">
+      <label>
+        <input type="radio" name="change" value="YES">
+        Yes
+      </label>
+    </div>
+    <div class="radio">
+        <label>
+          <input type="radio"  name="change" value="NO">
+         No
+        </label>
+      </div>
+</div>	
+
+<div id="reinforce-div" class="form-group noshow"> <!-- Radio group !-->
+    <label class="control-label">Did the editorial enable you to better argue about the discussed topic?</label>
+    <div class="radio">
+      <label>
+        <input type="radio" name="reinforce" value="YES">
+        Yes
+      </label>
+    </div>
+    <div class="radio">
+        <label>
+          <input type="radio"  name="reinforce" value="NO">
+         No
+        </label>
+      </div>
+</div>	
+
+<div class="form-group"> <!-- Message input !-->
+    <label class="control-label " for="explanation">Explain your choice(s) (Keep it short)</label>
+    <textarea class="form-control" id="explanation" name="explanation" rows="2" placeholder="Around 1 to 3 sentences..."></textarea>
+</div>
+
+<button type="submit" value="Next">Submit and Continue...</button>
+</form>
+
+{{ template "footer.html" .}}
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('input[name=affect]:checked').prop('checked', false);
+
+    $("input[name=affect]").on( "change", function() {
+
+        $('input[name=change]:checked').prop('checked', false);
+        $('input[name=reinforce]:checked').prop('checked', false);
+
+        var affectChoice = $(this).val();
+        console.log(affectChoice)
+        if (affectChoice === '1') {
+            $("#reinforce-div").hide();
+            $("#change-div").show();
+        } else if (affectChoice === '5') {
+            $("#reinforce-div").show();
+            $("#change-div").hide();
+        } else {
+            $("#reinforce-div").hide();
+            $("#change-div").hide();
+        }
+        
+    } );
+
+     $('#annotate-form').submit(function () {
+        $('#error').fadeOut(500)
+         var isValid = validateInput();
+         if(!isValid)
+            $('#error').fadeIn(500)
+         return isValid;
+     });
+
+    function validateInput() {
+        var affectChoice = $("input[name=affect]:checked").val();
+
+        var isChangeVisible = $("#change-div").is(":visible"); 
+        var changeChoice = $("input[name=change]:checked").val();
+        var isChangeChoiceValid = (!isChangeVisible) || (isChangeVisible && changeChoice!= null && changeChoice!= '');
+
+
+        var isReinforceVisible = $("#reinforce-div").is(":visible"); 
+        var reinforceChoice = $("input[name=reinforce]:checked").val();
+        var isReinforceChoiceValid = (!isReinforceVisible) || (isReinforceVisible && reinforceChoice!= null && reinforceChoice!= '');
+
+        var explanation = $.trim($("#explanation").val());
+
+        if (affectChoice != null && affectChoice != '' && isReinforceChoiceValid && isChangeChoiceValid && explanation != null && explanation != '' )
+            return true;
+        else
+            return false;
+        
+    }
+
+
+});
+</script>

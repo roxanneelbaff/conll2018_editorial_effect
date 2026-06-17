@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "conll2018-editorial-effect"
+version = "0.1.0"
+description = "Challenge or Empower: Revisiting Argumentation Quality in a News Editorial Corpus (CoNLL 2018)"
+# Original notebooks ran on Python 3.6.3
+requires-python = ">=3.8"
+dependencies = [
+    "krippendorff",
+    "matplotlib",
+    "nltk",
+    "numpy",
+    # argmax() -> idxmax() fixed for pandas >= 1.0
+    "pandas",
+    "plotly",
+    "pycm",
+    # binom_test -> binomtest fixed for scipy >= 1.9
+    "scipy",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/conll2018_editorial_effect"]
